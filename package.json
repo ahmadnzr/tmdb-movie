@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "format": "prettier --write ./src/",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -24,5 +26,13 @@
     "eslint-plugin-react-refresh": "^0.4.7",
     "typescript": "^5.2.2",
     "vite": "^5.3.4"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,md,json,jsx,tsx}": [
+      "yarn format"
+    ],
+    "src/**/*.{js,ts,jsx,tsx}": [
+      "eslint --fix --quiet --no-cache"
+    ]
   }
 }
