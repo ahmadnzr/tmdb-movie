@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { useFetchPopular } from "../../hooks";
 
 const Navbar = () => {
+  const { data, isLoading } = useFetchPopular();
+
+  useEffect(() => {
+    console.log({ data, isLoading });
+  }, [data, isLoading]);
+
   return (
     <Nav>
       <Container>
@@ -56,8 +63,9 @@ const Title = styled.span`
 const Menus = styled.div`
   display: flex;
   flex: 1.5;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 3rem;
 `;
 
 const MenuItem = styled.a`

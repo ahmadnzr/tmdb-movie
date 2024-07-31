@@ -4,52 +4,60 @@ import {
   ClockIcon,
   StarIcon,
 } from "@heroicons/react/24/outline";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
 
 import Navbar from "./Navbar";
+import { useFetchPopular } from "../../hooks";
+import { SECURE_IMAGE_BASE_URL } from "../../helpers/constants";
 
 const Hero = () => {
+  const { data } = useFetchPopular();
+
   return (
     <HeroSection>
       <Navbar />
+
       <HeroContent>
-        <Overlay />
-        <ImageContainer>
-          <img
-            src="https://images.alphacoders.com/115/thumb-1920-1156492.jpeg"
-            alt="img"
-            className="hero-img"
-          />
-        </ImageContainer>
-        <HeroDetail>
-          <Title>Black Widow</Title>
-          <Detail>
-            <DetailItem>
-              <StarIcon className="detail-icon" />
-              <label className="detail-label">IMDB: 7.4</label>
-            </DetailItem>
-            <DetailItem>
-              <ClockIcon className="detail-icon" />
-              <label className="detail-label">Duration: 1H 58M</label>
-            </DetailItem>
-            <DetailItem>
-              <CalendarDaysIcon className="detail-icon" />
-              <label className="detail-label">YEAR: 2023</label>
-            </DetailItem>
-          </Detail>
-          <Desc>
-            Natasha Romanoff, also known as Black Widow, confronts the darker
-            parts of her ledger when a dangerous conspiracy with ties to her
-            past arises. Pursued by a force that will stop at nothing to bring
-            her down, Natasha must deal with her history as a spy and the broken
-            relationships left in her wake long before she became an Avenger.
-          </Desc>
-          <ButtonContainer>
-            <Button $primary $icon="/icons/play.svg">
-              Watch Trailer
-            </Button>
-            <Button $icon="/icons/add.svg">Add List</Button>
-          </ButtonContainer>
-        </HeroDetail>
+        <SwiperContainer autoplay pagination modules={[Pagination, Autoplay]}>
+          {data?.results.map((item) => (
+            <SwiperSlide key={item.id}>
+              <ImageContainer>
+                <img
+                  src={`${SECURE_IMAGE_BASE_URL}/original/${item?.poster_path}`}
+                  alt="img"
+                  className="hero-img"
+                />
+              </ImageContainer>
+
+              <HeroDetail>
+                <Title>{item?.original_title}</Title>
+                <Detail>
+                  <DetailItem>
+                    <StarIcon className="detail-icon" />
+                    <label className="detail-label">IMDB: 7.4</label>
+                  </DetailItem>
+                  <DetailItem>
+                    <ClockIcon className="detail-icon" />
+                    <label className="detail-label">Duration: 1H 58M</label>
+                  </DetailItem>
+                  <DetailItem>
+                    <CalendarDaysIcon className="detail-icon" />
+                    <label className="detail-label">{item?.release_date}</label>
+                  </DetailItem>
+                </Detail>
+                <Desc>{item?.overview}</Desc>
+                <ButtonContainer>
+                  <Button $primary $icon="/icons/play.svg">
+                    Watch Trailer
+                  </Button>
+                  <Button $icon="/icons/add.svg">Add List</Button>
+                </ButtonContainer>
+              </HeroDetail>
+              <Overlay />
+            </SwiperSlide>
+          ))}
+        </SwiperContainer>
       </HeroContent>
     </HeroSection>
   );
@@ -72,7 +80,16 @@ const HeroContent = styled.div`
   right: 0;
 `;
 
+const SwiperContainer = styled(Swiper)`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
+
 const Overlay = styled.div`
+  user-select: none;
   z-index: 10;
   position: absolute;
   top: 0;
@@ -81,7 +98,7 @@ const Overlay = styled.div`
   bottom: 0;
   background-image: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.5),
     rgba(255, 0, 0, 0)
   );
 `;
