@@ -1,15 +1,7 @@
-import React, { useEffect } from "react";
 import styled from "styled-components";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { useFetchPopular } from "../../hooks";
 
 const Navbar = () => {
-  const { data, isLoading } = useFetchPopular();
-
-  useEffect(() => {
-    console.log({ data, isLoading });
-  }, [data, isLoading]);
-
   return (
     <Nav>
       <Container>

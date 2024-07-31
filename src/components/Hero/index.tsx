@@ -68,14 +68,14 @@ export default Hero;
 const HeroSection = styled.section`
   position: relative;
   min-width: 100vw;
-  min-height: 100vh;
+  min-height: 80vh;
   color: ${(props) => props.theme.color.neutral};
 `;
 
 const HeroContent = styled.div`
   position: absolute;
   top: 0;
-  bottom: 20%;
+  bottom: 0;
   left: 0;
   right: 0;
 `;

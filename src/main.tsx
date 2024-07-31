@@ -11,7 +11,7 @@ import "swiper/css/pagination";
 const theme = {
   color: {
     primary: "#e8ca0e",
-    bg: "#060716",
+    bg: "#0d1144",
     neutral2: "#060716",
     neutral: "white",
   },
