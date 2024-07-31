@@ -11,7 +11,7 @@ interface SectionTitleProps<T = string> {
   title: string;
   items?: SelectionItemType<T>[];
   selected?: SelectionItemType<T>;
-  onSelect: (item: SelectionItemType<T>) => void;
+  onSelect?: (item: SelectionItemType<T>) => void;
 }
 
 function SectionTitle<T>({
@@ -26,7 +26,7 @@ function SectionTitle<T>({
 
   const handleSelect = (item: SelectionItemType<T>) => {
     setSelected(item);
-    onSelect(item);
+    onSelect && onSelect(item);
   };
 
   return (
