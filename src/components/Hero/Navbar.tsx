@@ -8,8 +8,8 @@ const Navbar = () => {
         <Title>Y-Movies</Title>
         <Menus>
           <MenuItem>Home</MenuItem>
-          <MenuItem>Movies</MenuItem>
-          <MenuItem>Tv Series</MenuItem>
+          <MenuItem>Trending</MenuItem>
+          <MenuItem>Recently Release</MenuItem>
           <MenuItem>Up Coming</MenuItem>
         </Menus>
         <SearchContainer>
