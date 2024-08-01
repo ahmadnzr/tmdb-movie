@@ -27,7 +27,11 @@ const SearchResult = styled.div`
   gap: ${(props) => props.theme.spacing.large};
 `;
 
-const Search = () => {
+const Search = ({
+  onClickCard,
+}: {
+  onClickCard: (id: number | null) => void;
+}) => {
   const { handleChangePage } = useContext(PageContext);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -57,11 +61,13 @@ const Search = () => {
       <SearchResult>
         {data?.results.map((item) => (
           <Card
+            id={item.id || null}
             key={item.id}
             title={item?.title || ""}
             time={formatDate(item.release_date)}
             desc={item.overview}
             imgUrl={item.poster_path}
+            onClick={onClickCard}
           />
         ))}
       </SearchResult>

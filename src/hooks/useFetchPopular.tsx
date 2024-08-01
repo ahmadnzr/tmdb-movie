@@ -13,7 +13,7 @@ export const useFetchPopular = () => {
     select: (data) => {
       const { results } = data;
 
-      return { ...data, results: results.slice(0, 5) };
+      return { ...data, results: results?.slice(0, 5) };
     },
   });
 };
