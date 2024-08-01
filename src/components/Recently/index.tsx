@@ -10,7 +10,11 @@ import Card from "../Card";
 import SectionTitle from "../SectionTitle";
 import { useFetchRecent } from "../../hooks/useFetchRecent";
 
-const Recently = () => {
+const Recently = ({
+  onClickCard,
+}: {
+  onClickCard: (id: number | null) => void;
+}) => {
   const { data } = useFetchRecent({
     start: getStartOfCurrentMonth(),
     end: getEndOfCurrentMonth(),
@@ -20,13 +24,15 @@ const Recently = () => {
     <Container>
       <SectionTitle title="New This Month" />
       <SectionContent>
-        {data?.results.map((item) => (
+        {data?.results?.map((item) => (
           <Card
+            id={item.id || null}
             key={item.id}
             title={item?.title || ""}
             time={formatDate(item.release_date)}
             imgUrl={item?.poster_path}
             type="sm"
+            onClick={onClickCard}
           />
         ))}
       </SectionContent>

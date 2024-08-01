@@ -8,7 +8,11 @@ import { formatDate } from "../../helpers/utils";
 import Card from "../Card";
 import SectionTitle, { SelectionItemType } from "../SectionTitle";
 
-const Trending = () => {
+const Trending = ({
+  onClickCard,
+}: {
+  onClickCard: (id: number | null) => void;
+}) => {
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
 
   const [activeSelect, setActiveSelect] = useState<
@@ -72,10 +76,12 @@ const Trending = () => {
           {data?.results.map((item) => (
             <SwiperSlide key={item.id}>
               <Card
+                id={item.id || null}
                 imgUrl={item.poster_path}
                 title={item.title || ""}
                 time={formatDate(item.release_date)}
                 type="sm"
+                onClick={onClickCard}
               />
             </SwiperSlide>
           ))}

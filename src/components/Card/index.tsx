@@ -59,15 +59,30 @@ const CardContainer = styled.div<{ $type: "lg" | "sm" }>`
 
 interface CardProps {
   imgUrl?: string;
+  id: number | null;
   title: string;
   desc?: string;
   time?: string;
   type?: "lg" | "sm";
+  onClick?: (id: number | null) => void;
 }
 
-const Card = ({ imgUrl, title, desc, time, type = "lg" }: CardProps) => {
+const Card = ({
+  onClick,
+  id,
+  imgUrl,
+  title,
+  desc,
+  time,
+  type = "lg",
+}: CardProps) => {
   return (
-    <CardContainer $type={type}>
+    <CardContainer
+      $type={type}
+      onClick={() => {
+        onClick && onClick(id);
+      }}
+    >
       <CardImage
         $url={`${SECURE_IMAGE_BASE_URL}/w220_and_h330_face/${imgUrl}`}
       />
