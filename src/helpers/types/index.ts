@@ -16,5 +16,5 @@ export interface MovieListInterface {
 
 export interface MovieInterface {
   page?: number;
-  results: Partial<MovieListInterface>[];
+  results?: Partial<MovieListInterface>[];
 }

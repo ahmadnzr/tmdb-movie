@@ -20,7 +20,7 @@ const Hero = () => {
 
       <HeroContent>
         <SwiperContainer autoplay pagination modules={[Pagination, Autoplay]}>
-          {data?.results.map((item) => (
+          {data?.results?.map((item) => (
             <SwiperSlide key={item.id}>
               <ImageContainer>
                 <img

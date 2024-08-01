@@ -4,12 +4,16 @@ import Hero from "../components/Hero";
 import Trending from "../components/Trending";
 import Recently from "../components/Recently";
 
-const Home = () => {
+const Home = ({
+  onClickCard,
+}: {
+  onClickCard: (id: number | null) => void;
+}) => {
   return (
     <>
       <Hero />
-      <Trending />
-      <Recently />
+      <Trending onClickCard={onClickCard} />
+      <Recently onClickCard={onClickCard} />
     </>
   );
 };
