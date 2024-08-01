@@ -74,7 +74,8 @@ const Trending = () => {
               <Card
                 imgUrl={item.poster_path}
                 title={item.title || ""}
-                desc={formatDate(item.release_date)}
+                time={formatDate(item.release_date)}
+                type="sm"
               />
             </SwiperSlide>
           ))}

@@ -24,8 +24,9 @@ const Recently = () => {
           <Card
             key={item.id}
             title={item?.title || ""}
-            desc={formatDate(item.release_date)}
+            time={formatDate(item.release_date)}
             imgUrl={item?.poster_path}
+            type="sm"
           />
         ))}
       </SectionContent>

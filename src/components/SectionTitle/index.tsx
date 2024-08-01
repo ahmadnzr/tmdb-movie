@@ -12,6 +12,7 @@ interface SectionTitleProps<T = string> {
   items?: SelectionItemType<T>[];
   selected?: SelectionItemType<T>;
   onSelect?: (item: SelectionItemType<T>) => void;
+  onBack?: () => void;
 }
 
 function SectionTitle<T>({
@@ -19,6 +20,7 @@ function SectionTitle<T>({
   items,
   onSelect,
   selected: initialSelected,
+  onBack,
 }: SectionTitleProps<T>) {
   const [selected, setSelected] = useState<SelectionItemType<T> | undefined>(
     initialSelected,
@@ -31,6 +33,7 @@ function SectionTitle<T>({
 
   return (
     <SectionTitleContainer>
+      {onBack ? <BackButton onClick={onBack}>Back</BackButton> : null}
       <h2 className="section-title">{title}</h2>
       {items?.length ? (
         <Selection>
@@ -91,4 +94,22 @@ const SelectionHover = styled.button<{ $select: number }>`
 
   border-radius: 10px;
   transition: ${(props) => props.theme.animation};
+`;
+
+const BackButton = styled.button`
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  &:before {
+    width: 12px;
+    height: 12px;
+    content: "";
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("/icons/left.svg");
+  }
 `;

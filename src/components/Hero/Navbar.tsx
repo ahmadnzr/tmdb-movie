@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
+import { PageContext } from "../../layout/PageLayout";
+
 const Navbar = () => {
+  const { handleChangePage } = useContext(PageContext);
   return (
     <Nav>
       <Container>
@@ -14,7 +18,12 @@ const Navbar = () => {
         </Menus>
         <SearchContainer>
           <SearchIcon />
-          <SearchInput placeholder="Search For Movies..." />
+          <SearchInput
+            placeholder="Search For Movies..."
+            onClick={() => {
+              handleChangePage("search");
+            }}
+          />
         </SearchContainer>
       </Container>
     </Nav>
