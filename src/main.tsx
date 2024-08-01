@@ -7,6 +7,7 @@ import App from "./App.tsx";
 import "./index.css";
 import "swiper/css";
 import "swiper/css/pagination";
+import PageContextProvider from "./layout/PageLayout.tsx";
 
 const theme = {
   color: {
@@ -38,7 +39,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
-        <App />
+        <PageContextProvider>
+          <App />
+        </PageContextProvider>
       </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>,
